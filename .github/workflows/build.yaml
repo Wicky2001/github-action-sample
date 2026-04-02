@@ -3,10 +3,17 @@ name: Build and Push Docker image to Docker Hub
 on: push
 
 jobs:
+  # push_to_registry:this is the Job ID. It is the internal name the system uses 
+  #(which is exactly what you would use with the needs: keyword we discussed earlier).
   push_to_registry:
-    name: Push Docker image to Docker Hub
+    # This is the human-readable Job Name. It is essentially a description,
+    # and it is what actually displays on the GitHub website when you are watching the progress of the workflow.
+    name: Push Docker image to Docker Hub 
     runs-on: ubuntu-latest
     steps:
+      #Just like the job name, this is the human-readable Step Name that shows up in the GitHub UI logs. 
+      #If a step needs an internal identifier to be referenced later, it uses the id: keyword instead 
+      #(which you can actually see on your Set short SHA step!).
       - name: Check out the repo
         uses: actions/checkout@v3
       
@@ -26,5 +33,5 @@ jobs:
           context: ./
           push: true
           tags: |
-                kalharacodes/docker-automation:${{ env.SHORT_SHA }}
-                kalharacodes/docker-automation:latest
+                wicky2001/docker-automation-sample:${{ env.SHORT_SHA }}
+                wicky2001/docker-automation-sample:latest
